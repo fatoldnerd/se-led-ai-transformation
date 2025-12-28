@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE-Led AI Transformation: Strategic Proposal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0d1117;
+            --navy-light: #161b22;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-purple: #bc86fc;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --border: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Table of Contents Navigation */
+        .toc-nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--navy);
+            border-right: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .toc-nav::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .toc-nav::-webkit-scrollbar-track {
+            background: var(--navy-light);
+        }
+
+        .toc-nav::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .toc-header {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .toc-link:hover {
+            background: var(--navy-light);
+            color: var(--text-primary);
+            border-left-color: var(--accent-blue);
+        }
+
+        .toc-link.active {
+            background: var(--navy-light);
+            color: var(--accent-blue);
+            border-left-color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .toc-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+        }
+
+        .toc-toggle:hover {
+            background: var(--accent-purple);
+        }
+
+        /* Main content with TOC offset */
+        .main-content {
+            margin-left: 280px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0 6rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(88, 166, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .section:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .section:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Executive Summary Box */
+        .exec-summary {
+            background: var(--navy-light);
+            border: 2px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exec-summary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+        }
+
+        .exec-summary h3 {
+            margin-top: 0;
+        }
+
+        /* Three Phases Grid */
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .phase-card {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 12px 32px rgba(88, 166, 255, 0.2);
+        }
+
+        .phase-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            opacity: 0.15;
+        }
+
+        .phase-card h3 {
+            margin-top: 0;
+        }
+
+        .phase-duration {
+            display: inline-block;
+            background: rgba(88, 166, 255, 0.15);
+            color: var(--accent-blue);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .phase-card.green .phase-duration {
+            background: rgba(63, 185, 80, 0.15);
+            color: var(--accent-green);
+        }
+
+        .phase-card.purple .phase-duration {
+            background: rgba(188, 134, 252, 0.15);
+            color: var(--accent-purple);
+        }
+
+        /* Why SE Section */
+        .why-se-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .capability-card {
+            background: var(--navy-light);
+            border-left: 4px solid var(--accent-blue);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .capability-card h4 {
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .capability-card p {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        /* Budget Section */
+        .budget-box {
+            background: linear-gradient(135deg, rgba(63, 185, 80, 0.1) 0%, rgba(63, 185, 80, 0.05) 100%);
+            border: 2px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .budget-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .budget-item {
+            text-align: center;
+        }
+
+        .budget-amount {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .budget-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* ROI Highlight */
+        .roi-highlight {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.15) 0%, rgba(188, 134, 252, 0.15) 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .roi-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Metrics Dashboard Preview */
+        .metrics-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card-preview {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .metric-card-preview.green {
+            border-left-color: var(--accent-green);
+        }
+
+        .metric-card-preview.purple {
+            border-left-color: var(--accent-purple);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* The Ask Section */
+        .ask-section {
+            background: var(--navy-light);
+            border: 2px solid var(--accent-purple);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .ask-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ask-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .ask-number {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .ask-content h4 {
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .ask-content p {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            color: white;
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(88, 166, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(88, 166, 255, 0.4);
+        }
+
+        /* List Styling */
+        ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        li {
+            padding-left: 2rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--navy-light);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .toc-nav {
+                transform: translateX(-100%);
+            }
+
+            .toc-nav.open {
+                transform: translateX(0);
+                box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+            }
+
+            .toc-toggle {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.25rem;
+            }
+
+            .phases-grid,
+            .why-se-grid,
+            .budget-breakdown,
+            .metrics-preview {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 2rem 0 3rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .toc-nav,
+            .toc-toggle {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .hero::before {
+                display: none;
+            }
+
+            .phase-card,
+            .exec-summary,
+            .budget-box,
+            .ask-section {
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mobile TOC Toggle -->
+    <button class="toc-toggle" onclick="toggleTOC()">☰</button>
+
+    <!-- Table of Contents Navigation -->
+    <nav class="toc-nav" id="tocNav">
+        <div class="toc-header">Contents</div>
+        <ul class="toc-list">
+            <li class="toc-item"><a href="#exec-summary" class="toc-link">Executive Summary</a></li>
+            <li class="toc-item"><a href="#opportunity" class="toc-link">The Opportunity</a></li>
+            <li class="toc-item"><a href="#three-phases" class="toc-link">Three-Phase Plan</a></li>
+            <li class="toc-item"><a href="#budget" class="toc-link">Budget Requirements</a></li>
+            <li class="toc-item"><a href="#metrics" class="toc-link">Success Metrics</a></li>
+            <li class="toc-item"><a href="#whats-built" class="toc-link">What's Already Built</a></li>
+            <li class="toc-item"><a href="#the-ask" class="toc-link">The Ask</a></li>
+            <li class="toc-item"><a href="#alignment" class="toc-link">Strategic Alignment</a></li>
+            <li class="toc-item"><a href="#next-steps" class="toc-link">Next Steps</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>SE-Led AI Transformation</h1>
+                    <p class="subtitle">From Task Force to Center of Excellence</p>
+                    <p class="tagline">A strategic proposal to position Sales Engineering as the driver of enterprise AI
+                        adoption</p>
+                </div>
+            </div>
+
+            <!-- Executive Summary -->
+            <div class="section" id="exec-summary">
+                <div class="exec-summary">
+                    <h3>Executive Summary</h3>
+                    <p><strong>Our CEO has positioned the company as AI-first. This is our opportunity to lead that
+                            transformation.</strong></p>
+                    <p>Sales Engineering sits at a unique intersection of technical credibility, GTM storytelling, and
+                        revenue visibility, making us uniquely qualified to drive AI adoption that's both technically
+                        sound and commercially viable.</p>
+                    <p><strong>This proposal outlines a three-phase approach to transform SE from AI consumers into AI
+                            orchestrators who drive strategic value across the enterprise.</strong></p>
+                </div>
+            </div>
+
+            <!-- The Opportunity -->
+            <div class="section" id="opportunity">
+                <h2>The Opportunity</h2>
+                <p>AI adoption is happening ad-hoc across our organization with no clear ownership or strategic
+                    coordination. Meanwhile, we're seeing a pattern at leading companies: <strong>SE teams are becoming
+                        the strategic drivers of AI transformation.</strong></p>
+
+                <h3>Why Sales Engineering?</h3>
+                <div class="why-se-grid">
+                    <div class="capability-card">
+                        <h4>Technical Credibility</h4>
+                        <p>Product trusts our evaluation and tool recommendations</p>
+                    </div>
+                    <div class="capability-card">
+                        <h4>GTM Storytelling</h4>
+                        <p>We translate technical capability into business value</p>
+                    </div>
+                    <div class="capability-card">
+                        <h4>Customer Insights</h4>
+                        <p>We ground AI strategy in real market needs</p>
+                    </div>
+                    <div class="capability-card">
+                        <h4>Revenue Visibility</h4>
+                        <p>We identify highest-ROI automation opportunities</p>
+                    </div>
+                </div>
+                <p><strong>No other team has all four capabilities.</strong> This positions us to bridge Product, Sales,
+                    Marketing, and Executive Leadership in ways no single function can.</p>
+            </div>
+
+            <!-- Three Phases -->
+            <div class="section" id="three-phases">
+                <h2>Three-Phase Transformation</h2>
+                <p>We'll execute this transformation through a three-phase model that builds momentum systematically:
+                </p>
+
+                <div class="phases-grid">
+                    <div class="phase-card">
+                        <div class="phase-number">1</div>
+                        <div class="phase-duration">Months 1-3</div>
+                        <h3>AI Task Force</h3>
+                        <p>Form a volunteer-based innovation team (4 SEs + 1 lead) to build quick wins and demonstrate
+                            value.</p>
+                        <ul>
+                            <li>Hand-raisers only (22% participation target)</li>
+                            <li>Ship 3 tools/workflows in 90 days</li>
+                            <li>Executive showcase with ROI metrics</li>
+                        </ul>
+                    </div>
+
+                    <div class="phase-card green">
+                        <div class="phase-number">2</div>
+                        <div class="phase-duration">Months 4-9</div>
+                        <h3>Center of Excellence</h3>
+                        <p>Establish enterprise-wide AI governance with CTO partnership and SE as the anchor spoke.</p>
+                        <ul>
+                            <li>Standards & best practices</li>
+                            <li>Cross-functional enablement</li>
+                            <li>Strategic communication to C-suite</li>
+                        </ul>
+                    </div>
+
+                    <div class="phase-card purple">
+                        <div class="phase-number">3</div>
+                        <div class="phase-duration">Ongoing</div>
+                        <h3>Roadshow Program</h3>
+                        <p>Drive organic adoption through show-don't-tell demos to each department.</p>
+                        <ul>
+                            <li>15-minute impact demos</li>
+                            <li>Real metrics from actual use</li>
+                            <li>Peer-led learning and adoption</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="roi-highlight">
+                    <p style="color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 1rem;">Self-Reinforcing
+                        Flywheel</p>
+                    <p style="color: var(--text-primary); font-size: 1.25rem; margin-bottom: 0;"><strong>Task Force →
+                            COE → Roadshows → Measurable Impact → Expansion</strong></p>
+                </div>
+            </div>
+
+            <!-- Budget -->
+            <div class="section" id="budget">
+                <h2>Budget Requirements</h2>
+                <div class="budget-box">
+                    <h3 style="margin-top: 0;">90-Day Pilot Investment</h3>
+                    <p>Essential AI tool subscriptions for 5 team members (4 SEs + 1 lead)</p>
+
+                    <div class="budget-breakdown">
+                        <div class="budget-item">
+                            <div class="budget-amount">$500</div>
+                            <div class="budget-label">Per Month<br>(5 people × $100)</div>
+                        </div>
+                        <div class="budget-item">
+                            <div class="budget-amount">$1,500</div>
+                            <div class="budget-label">90-Day Pilot<br>(3 months)</div>
+                        </div>
+                        <div class="budget-item">
+                            <div class="budget-amount">$6,000</div>
+                            <div class="budget-label">Annual Budget<br>(if continuing)</div>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--accent-green); margin-top: 2rem;">Tools Covered</h4>
+                    <ul>
+                        <li>Claude Pro/Team ($20/month) - Advanced analysis</li>
+                        <li>Perplexity ($20/month) - Perplexity.ai</li>
+                        <li>Cursor IDE ($20/month) - AI-native development</li>
+                        <li>Additional tools as needed (ChatGPT Pro, v0, Supabase, etc.)</li>
+                    </ul>
+                </div>
+
+                <div class="roi-highlight">
+                    <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">Expected ROI</p>
+                    <div class="roi-number">15-20x</div>
+                    <p style="color: var(--text-primary); margin-bottom: 0;">If each person saves 2 hours/week, that's
+                        240 hours over 90 days = ~$24,000 value (at $100/hour). Even 1% win rate improvement justifies
+                        the investment.</p>
+                </div>
+            </div>
+
+            <!-- Success Metrics -->
+            <div class="section" id="metrics">
+                <h2>How We'll Measure Success</h2>
+                <p>Track progress across three levels: leading indicators (Task Force health), impact indicators (COE
+                    effectiveness), and business outcomes (executive view).</p>
+
+                <h3>Task Force Metrics (Leading Indicators)</h3>
+                <div class="metrics-preview">
+                    <div class="metric-card-preview">
+                        <div class="metric-label">Participation</div>
+                        <div class="metric-value">22%</div>
+                        <div class="metric-subtitle">4 of 18 SE team members</div>
+                    </div>
+                    <div class="metric-card-preview">
+                        <div class="metric-label">Velocity</div>
+                        <div class="metric-value">4.2</div>
+                        <div class="metric-subtitle">Tools shipped/month</div>
+                    </div>
+                    <div class="metric-card-preview">
+                        <div class="metric-label">Engagement</div>
+                        <div class="metric-value">142</div>
+                        <div class="metric-subtitle">Slack messages/week</div>
+                    </div>
+                    <div class="metric-card-preview">
+                        <div class="metric-label">Learning</div>
+                        <div class="metric-value">67%</div>
+                        <div class="metric-subtitle">Training completion</div>
+                    </div>
+                </div>
+
+                <h3>COE Metrics (Impact Indicators)</h3>
+                <div class="metrics-preview">
+                    <div class="metric-card-preview green">
+                        <div class="metric-label">Adoption</div>
+                        <div class="metric-value">87</div>
+                        <div class="metric-subtitle">Users across departments</div>
+                    </div>
+                    <div class="metric-card-preview green">
+                        <div class="metric-label">Time Savings</div>
+                        <div class="metric-value">124</div>
+                        <div class="metric-subtitle">Hours saved/week</div>
+                    </div>
+                    <div class="metric-card-preview green">
+                        <div class="metric-label">Revenue Impact</div>
+                        <div class="metric-value">$2.4M</div>
+                        <div class="metric-subtitle">Pipeline influenced</div>
+                    </div>
+                    <div class="metric-card-preview green">
+                        <div class="metric-label">Innovation</div>
+                        <div class="metric-value">12</div>
+                        <div class="metric-subtitle">Use cases identified</div>
+                    </div>
+                </div>
+
+                <h3>Executive Metrics (Business Outcomes)</h3>
+                <div class="metrics-preview">
+                    <div class="metric-card-preview purple">
+                        <div class="metric-label">Deal Cycle</div>
+                        <div class="metric-value">-14%</div>
+                        <div class="metric-subtitle">Days-to-close reduction</div>
+                    </div>
+                    <div class="metric-card-preview purple">
+                        <div class="metric-label">Win Rate</div>
+                        <div class="metric-value">+9%</div>
+                        <div class="metric-subtitle">Competitive wins</div>
+                    </div>
+                    <div class="metric-card-preview purple">
+                        <div class="metric-label">NPS</div>
+                        <div class="metric-value">+6</div>
+                        <div class="metric-subtitle">Customer satisfaction</div>
+                    </div>
+                    <div class="metric-card-preview purple">
+                        <div class="metric-label">Cost Savings</div>
+                        <div class="metric-value">$186K</div>
+                        <div class="metric-subtitle">Quarterly automation value</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What's Already Built -->
+            <div class="section" id="whats-built">
+                <h2>What's Already Built</h2>
+                <p><strong>This isn't a concept—it's ready to launch.</strong> I've developed a complete implementation
+                    framework including:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Deliverable</th>
+                            <th>Status</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Implementation Framework</td>
+                            <td style="color: var(--accent-green);">✓ Complete</td>
+                            <td>Full playbook: Task Force → COE → Roadshow</td>
+                        </tr>
+                        <tr>
+                            <td>8-Session Training Curriculum</td>
+                            <td style="color: var(--accent-green);">✓ Complete</td>
+                            <td>Fundamentals through advanced orchestration</td>
+                        </tr>
+                        <tr>
+                            <td>Success Metrics Dashboard</td>
+                            <td style="color: var(--accent-green);">✓ Complete</td>
+                            <td>Leading, impact, and executive metrics</td>
+                        </tr>
+                        <tr>
+                            <td>Communication Templates</td>
+                            <td style="color: var(--accent-green);">✓ Complete</td>
+                            <td>Launch emails, COE proposals, roadshow invites</td>
+                        </tr>
+                        <tr>
+                            <td>Risk Mitigation Plan</td>
+                            <td style="color: var(--accent-green);">✓ Complete</td>
+                            <td>Common pitfalls and mitigation strategies</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- The Ask -->
+            <div class="section" id="the-ask">
+                <h2>The Ask</h2>
+                <div class="ask-section">
+                    <div class="ask-item">
+                        <div class="ask-number">1</div>
+                        <div class="ask-content">
+                            <h4>VP Sponsorship to Launch AI Task Force</h4>
+                            <p>Announcement at next team meeting • Cross-functional air cover • $1,500 budget approval
+                                for 90-day pilot</p>
+                        </div>
+                    </div>
+
+                    <div class="ask-item">
+                        <div class="ask-number">2</div>
+                        <div class="ask-content">
+                            <h4>Executive Alignment for COE Phase (90 days out)</h4>
+                            <p>Introduction to CTO/CIO for governance partnership • CRO staff slot to present results •
+                                Green light to expand beyond SE team</p>
+                        </div>
+                    </div>
+
+                    <div class="ask-item">
+                        <div class="ask-number">3</div>
+                        <div class="ask-content">
+                            <h4>Freedom to Operate for First 90 Days</h4>
+                            <p>Volunteer time allocation (~2 hrs/week) • Room to experiment and iterate • Support for
+                                quick wins and rapid deployment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; font-size: 1.25rem;"><strong>I'm ready to own execution.
+                        Framework is built. Curriculum is ready. Let's launch.</strong></p>
+            </div>
+
+            <!-- Strategic Alignment -->
+            <div class="section" id="alignment">
+                <h2>Strategic Alignment</h2>
+                <p>This initiative aligns with every stakeholder's priorities:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stakeholder</th>
+                            <th>Priority</th>
+                            <th>How This Delivers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>CEO</strong></td>
+                            <td>AI-First Company</td>
+                            <td>Direct delivery on mandate with measurable outcomes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CRO</strong></td>
+                            <td>Revenue Efficiency</td>
+                            <td>Shorter deal cycles, higher win rates, better demo quality</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CTO</strong></td>
+                            <td>Enterprise Governance</td>
+                            <td>Standards, security framework, best practices</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SE Team</strong></td>
+                            <td>Career Development</td>
+                            <td>High-visibility work, skill building, executive exposure</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="text-align: center; margin-top: 2rem;"><strong>This is a rare four-way win: CEO, CRO, CTO, and
+                        SE team all benefit.</strong></p>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="section" id="next-steps">
+                <h2>Next Steps: First 30 Days</h2>
+                <div class="phases-grid">
+                    <div class="phase-card">
+                        <h3>This Week</h3>
+                        <ul>
+                            <li>Secure VP approval</li>
+                            <li>Identify 3-5 founding members</li>
+                            <li>Pick first quick-win project</li>
+                        </ul>
+                    </div>
+
+                    <div class="phase-card green">
+                        <h3>Weeks 2-4</h3>
+                        <ul>
+                            <li>Launch announcement at team meeting</li>
+                            <li>Start training Sessions 1-2</li>
+                            <li>Form three squads</li>
+                        </ul>
+                    </div>
+
+                    <div class="phase-card purple">
+                        <h3>Day 30 Checkpoint</h3>
+                        <ul>
+                            <li>First project in progress</li>
+                            <li>Weekly standups established</li>
+                            <li>Early wins documented</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h2 style="margin-bottom: 1rem;">Let's Position SE as the Strategic Driver of AI</h2>
+                <p style="font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2rem;">Framework ready •
+                    Curriculum built • Team eager • CEO-aligned</p>
+                <a href="#exec-summary" class="cta-button">Back to Top</a>
+            </div>
+
+            <!-- Footer -->
+            <div
+                style="text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: 3rem;">
+                <p>SE AI Transformation Proposal • December 2024</p>
+                <p>Complete documentation available including 16-page framework document, 8-session training curriculum,
+                    and interactive metrics dashboard</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle TOC on mobile
+        function toggleTOC() {
+            const toc = document.getElementById('tocNav');
+            toc.classList.toggle('open');
+        }
+
+        // Smooth scroll and active state
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                // Close mobile menu
+                document.getElementById('tocNav').classList.remove('open');
+
+                // Smooth scroll
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                // Update active state
+                document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Update active state on scroll
+        window.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('.section[id]');
+            const scrollPos = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.toc-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Close mobile TOC when clicking outside
+        document.addEventListener('click', function (e) {
+            const toc = document.getElementById('tocNav');
+            const toggle = document.querySelector('.toc-toggle');
+
+            if (!toc.contains(e.target) && e.target !== toggle) {
+                toc.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+
+</html>
